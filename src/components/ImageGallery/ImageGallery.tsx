@@ -1,7 +1,21 @@
 import ImageCard from "../ImageCard/ImageCard";
 import s from "./ImageGallery.module.css";
 
-const ImageGallery = ({ images, handleOpenModal }) => {
+type ImageData = {
+  id: number;
+  urls: {
+    small: string;
+    regular: string;
+  };
+  description: string;
+};
+
+type Props = {
+  images: ImageData[];
+  handleOpenModal: (url: string) => void;
+};
+
+const ImageGallery = ({ images, handleOpenModal }: Props) => {
   return (
     <ul className={s.imagesContainer}>
       {images.map((image) => {
