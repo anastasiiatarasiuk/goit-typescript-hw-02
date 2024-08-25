@@ -21,6 +21,11 @@ type ModalState = {
   modalData: string | null;
 };
 
+type DataResponse = {
+  results: ImageData[];
+  total_pages: number;
+};
+
 export default function App() {
   const [images, setImages] = useState<ImageData[]>([]);
   const [query, setQuery] = useState<string>("");
@@ -41,7 +46,7 @@ export default function App() {
         setIsLoading(true);
         setIsError(false);
 
-        const response = await fetchImages(query, page);
+        const response: DataResponse = await fetchImages(query, page);
 
         setImages((prev) =>
           page === 1 ? response.results : [...prev, ...response.results]
